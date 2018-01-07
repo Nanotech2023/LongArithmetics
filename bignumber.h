@@ -10,7 +10,8 @@ typedef struct bigNum
     int amount;
     int *digits;
     _Bool isNegative;
-} bigNum;
+}
+bigNum;
 
 bigNum BigNum (char *digitsString);  // constructor
 void print (const bigNum *a);
