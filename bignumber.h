@@ -1,4 +1,4 @@
-#ifndef BIGNUMBER_H
+ifndef BIGNUMBER_H
 #define BIGNUMBER_H
 
 #include <string.h>
@@ -14,7 +14,7 @@ typedef struct bigNum
 
 bigNum BigNum (char *digitsString);  // constructor
 void print (const bigNum *a);
-bool correctbigNum (const bigNum *a); // ïðîâåðÿåò ïàðàìåòð ôóíêöèè
+bool correctbigNum (const bigNum *a); // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÑ‚ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸
 bool more (const bigNum *a, const bigNum *b);   // a > b
 bool left (const bigNum *a, const bigNum *b);   // a < b
 bool equal (const bigNum *a, const bigNum *b);   // a = b
