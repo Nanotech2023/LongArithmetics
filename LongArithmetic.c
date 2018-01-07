@@ -7,15 +7,15 @@ const int BASE = 1e4;
 const int BASE_LENGTH = 4;
 const char *digitFormat = "%.4d";   // format output
 
-bool isNumber (char *string, int strLength) // Проверяет строку перед преобразованием в bigNumber
+bool isNumber (char *string, int strLength) // РџСЂРѕРІРµСЂСЏРµС‚ СЃС‚СЂРѕРєСѓ РїРµСЂРµРґ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµРј РІ bigNumber
 {
     if (strLength == 0)
     {
         return false;
     }
-    if (isdigit(string[0]) == false)   // Проверяет потенциальные минусы
+    if (isdigit(string[0]) == false)   // РџСЂРѕРІРµСЂСЏРµС‚ РїРѕС‚РµРЅС†РёР°Р»СЊРЅС‹Рµ РјРёРЅСѓСЃС‹
     {
-        if (string[0] != '-' || strLength == 1)   // '-' не является числом
+        if (string[0] != '-' || strLength == 1)   // '-' РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј
         {
             return false;
         }
@@ -34,7 +34,7 @@ bool isNumber (char *string, int strLength) // Проверяет строку перед преобразов
 
 void print(const bigNum* bigOne)
 {
-    if (bigOne -> amount == 0)   // Пустые переменные имеют сумму .amount = 0
+    if (bigOne -> amount == 0)   // РџСѓСЃС‚С‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РёРјРµСЋС‚ СЃСѓРјРјСѓ .amount = 0
     {
         printf("I can't to print it!\n");
         return;
@@ -54,11 +54,11 @@ void print(const bigNum* bigOne)
 
 bigNum BigNum (char *digitsString)  // Constructor
 {
-    bigNum datBig;   // Новое число bigNum
-    int digitsLen = strlen(digitsString) - 1;   // digitsString содержит '\n' в конце так, что digitsLen = strlen() - 1
+    bigNum datBig;   // РќРѕРІРѕРµ С‡РёСЃР»Рѕ bigNum
+    int digitsLen = strlen(digitsString) - 1;   // digitsString СЃРѕРґРµСЂР¶РёС‚ '\n' РІ РєРѕРЅС†Рµ С‚Р°Рє, С‡С‚Рѕ digitsLen = strlen() - 1
     if (!isNumber(digitsString, digitsLen))
     {
-        if (digitsLen != -1) // Пустые числа bigNum создаются с использованием "" в виде digitsString
+        if (digitsLen != -1) // РџСѓСЃС‚С‹Рµ С‡РёСЃР»Р° bigNum СЃРѕР·РґР°СЋС‚СЃСЏ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј "" РІ РІРёРґРµ digitsString
         {
             printf("This isn't a number!\n");
         }
@@ -68,7 +68,7 @@ bigNum BigNum (char *digitsString)  // Constructor
         return datBig;
     }
 
-    if (digitsString[0] == '-')  // Контрольный знак
+    if (digitsString[0] == '-')  // РљРѕРЅС‚СЂРѕР»СЊРЅС‹Р№ Р·РЅР°Рє
     {
         if (digitsString[1] != '0')   // -0 -> 0
         {
@@ -86,8 +86,8 @@ bigNum BigNum (char *digitsString)  // Constructor
         datBig.isNegative = false;
     }
 
-    int i, pos = 0, decPoint = 1;      // Преобразует текущие символы в .digits[i]
-    datBig.digits = (int *) malloc(sizeof(int) * (digitsLen / BASE_LENGTH + 5));    // Выделяет память на массив цифр
+    int i, pos = 0, decPoint = 1;      // РџСЂРµРѕР±СЂР°Р·СѓРµС‚ С‚РµРєСѓС‰РёРµ СЃРёРјРІРѕР»С‹ РІ .digits[i]
+    datBig.digits = (int *) malloc(sizeof(int) * (digitsLen / BASE_LENGTH + 5));    // Р’С‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РЅР° РјР°СЃСЃРёРІ С†РёС„СЂ
     if (datBig.digits == NULL)
     {
         printf("Unable to allocate memory");
@@ -98,7 +98,7 @@ bigNum BigNum (char *digitsString)  // Constructor
     int newDigit = (digitsLen - 1) % BASE_LENGTH;
     for (i = digitsLen - 1; i >= 0; --i)
     {
-        if (i % BASE_LENGTH == newDigit && i != digitsLen - 1)   // Следующая цифра
+        if (i % BASE_LENGTH == newDigit && i != digitsLen - 1)   // РЎР»РµРґСѓСЋС‰Р°СЏ С†РёС„СЂР°
         {
             ++pos;
             datBig.digits[pos] = 0;
@@ -108,7 +108,7 @@ bigNum BigNum (char *digitsString)  // Constructor
         decPoint*= 10;
     }
 
-    int newAmount = pos + 1;    // Стирает ведущие нули
+    int newAmount = pos + 1;    // РЎС‚РёСЂР°РµС‚ РІРµРґСѓС‰РёРµ РЅСѓР»Рё
     while (newAmount > 1 && datBig.digits[newAmount - 1] == 0)
     {
         --newAmount;
@@ -253,7 +253,7 @@ bigNum bigNum_abs (const bigNum *a)
         exit(EXIT_FAILURE);
     }
     int i;
-    for (i = 0; i < a -> amount; ++i)     // Создаёт копию  a
+    for (i = 0; i < a -> amount; ++i)     // РЎРѕР·РґР°С‘С‚ РєРѕРїРёСЋ  a
     {
         newBig.digits[i] = a -> digits[i];
     }
@@ -295,7 +295,7 @@ bigNum sum (const bigNum *a, const bigNum *b)      // a + b
         newBig.isNegative = false;
     }
 
-    int i, r = 0;   //Здесь и далее r - остаток от деления на BASE значений, которые больше, чем BASE
+    int i, r = 0;   //Р—РґРµСЃСЊ Рё РґР°Р»РµРµ r - РѕСЃС‚Р°С‚РѕРє РѕС‚ РґРµР»РµРЅРёСЏ РЅР° BASE Р·РЅР°С‡РµРЅРёР№, РєРѕС‚РѕСЂС‹Рµ Р±РѕР»СЊС€Рµ, С‡РµРј BASE
     if (a -> amount > b -> amount)
     {
         newBig.amount = a -> amount;
@@ -396,7 +396,7 @@ bigNum sub (const bigNum *a, const bigNum *b)     // a - b
         exit(EXIT_FAILURE);
     }
 
-    for (i = 0; i < newBig.amount; ++i)     // Создаёт копию a
+    for (i = 0; i < newBig.amount; ++i)     // РЎРѕР·РґР°С‘С‚ РєРѕРїРёСЋ a
     {
         newBig.digits[i] = a -> digits[i];
     }
@@ -437,7 +437,7 @@ bigNum mul (const bigNum *a, const bigNum *b)      // a * b
 
     bigNum newBig = BigNum("");
 
-    if (a -> isNegative ^ b -> isNegative)    // Меняет знак
+    if (a -> isNegative ^ b -> isNegative)    // РњРµРЅСЏРµС‚ Р·РЅР°Рє
     {
         if (!(a -> amount == 1 && a -> digits[0] == 0) && !(b -> amount == 1 && b -> digits[0] == 0))   // != 0
         {
@@ -489,12 +489,12 @@ bigNum bigNum_div (const bigNum *a, const bigNum *b)    // a / b
 
     bigNum newBig = BigNum("");
 
-    if (b -> amount == 1 && b -> digits[0] == 0)   // Деление на нуль
+    if (b -> amount == 1 && b -> digits[0] == 0)   // Р”РµР»РµРЅРёРµ РЅР° РЅСѓР»СЊ
     {
         printf("Division by zero");
         exit(EXIT_FAILURE);
     }
-    if (a -> isNegative ^ b -> isNegative)    // Меняет знак
+    if (a -> isNegative ^ b -> isNegative)    // РњРµРЅСЏРµС‚ Р·РЅР°Рє
     {
         if (!(a -> amount == 1 && a -> digits[0] == 0))  // != 0
         {
@@ -520,7 +520,7 @@ bigNum bigNum_div (const bigNum *a, const bigNum *b)    // a / b
         exit(EXIT_FAILURE);
     }
 
-    int *currValue;  // Часть числа a, которая удовлетворяет условию BASE * b >= currValue
+    int *currValue;  // Р§Р°СЃС‚СЊ С‡РёСЃР»Р° a, РєРѕС‚РѕСЂР°СЏ СѓРґРѕРІР»РµС‚РІРѕСЂСЏРµС‚ СѓСЃР»РѕРІРёСЋ BASE * b >= currValue
     currValue = (int *) calloc(a -> amount + 1, sizeof(int));
     if (currValue == NULL)
     {
@@ -537,7 +537,7 @@ bigNum bigNum_div (const bigNum *a, const bigNum *b)    // a / b
         }
         currValue[0] = a -> digits[i];
 
-        int leftBound = 0, rightBound = BASE; // Двоичный поиск max(x) такой, что b * x <= currValue
+        int leftBound = 0, rightBound = BASE; // Р”РІРѕРёС‡РЅС‹Р№ РїРѕРёСЃРє max(x) С‚Р°РєРѕР№, С‡С‚Рѕ b * x <= currValue
         int x = 0, retX = 0;
         int *bMulX1, *bMulX2;
         int **currMul, **retMul;
@@ -554,7 +554,7 @@ bigNum bigNum_div (const bigNum *a, const bigNum *b)    // a / b
         while (leftBound <= rightBound)
         {
             x = (leftBound + rightBound) >> 1;
-            int r = 0;               // Умножение
+            int r = 0;               // РЈРјРЅРѕР¶РµРЅРёРµ
             for (j = 0; j < b -> amount; ++j)
             {
                 (*currMul)[j] = b -> digits[j] * x + r;
@@ -564,7 +564,7 @@ bigNum bigNum_div (const bigNum *a, const bigNum *b)    // a / b
            (*currMul)[j] = r;
 
             _Bool compare = true; // b * x <= currValue
-            for (j = b -> amount; j >= 0; --j)     // Сравнение
+            for (j = b -> amount; j >= 0; --j)     // РЎСЂР°РІРЅРµРЅРёРµ
             {
                 if ((*currMul)[j] < currValue[j])
                 {
@@ -579,7 +579,7 @@ bigNum bigNum_div (const bigNum *a, const bigNum *b)    // a / b
             if (compare)
             {
                 retX = x;
-                int *temp = *currMul; // замена currMul и retMul
+                int *temp = *currMul; // Р·Р°РјРµРЅР° currMul Рё retMul
                 *currMul = *retMul;
                 *retMul = temp;
                 leftBound = x + 1;
