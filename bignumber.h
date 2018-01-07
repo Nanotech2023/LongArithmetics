@@ -1,4 +1,4 @@
-ifndef BIGNUMBER_H
+#ifndef BIGNUMBER_H
 #define BIGNUMBER_H
 
 #include <string.h>
