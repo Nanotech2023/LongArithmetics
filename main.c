@@ -6,7 +6,7 @@
 
 char *readline()
     {
-    int size = 16;      // Устанавливает минимальный размер строки до 16 байт
+    int size = 16;      // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ СЃС‚СЂРѕРєРё РґРѕ 16 Р±Р°Р№С‚
     char *str = malloc(sizeof(char) * size);
     if (str == NULL)
     {
@@ -20,7 +20,7 @@ char *readline()
         *(str + len) = c;
         ++len;
         if (len == size)
-        {     // Необходимо выделить больше памяти
+        {     // РќРµРѕР±С…РѕРґРёРјРѕ РІС‹РґРµР»РёС‚СЊ Р±РѕР»СЊС€Рµ РїР°РјСЏС‚Рё
             size = size + size / 2;
             str = (char *)realloc(str, sizeof(str)* size);
             if (str == NULL)
