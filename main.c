@@ -45,11 +45,8 @@ int main(int argc, char* argv[]) {
     char* aString;
     char* bString;
     char operation;
-    printf("Enter a = ");
     aString = readline(fp);
-    printf("Enter b = ");
     bString = readline(fp);
-    printf("\nEnter an operation\n");
     operation = fgetc(fp);
     bigNum a = BigNum(aString);
     bigNum b = BigNum(bString);
