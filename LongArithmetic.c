@@ -56,30 +56,13 @@ bigNum BigNum (char *digitsString)  // Constructor
 {
     bigNum datBig;   // Новое число bigNum
     int digitsLen = strlen(digitsString) - 1;   // digitsString содержит '\n' в конце так, что digitsLen = strlen() - 1
-    if (!isNumber(digitsString, digitsLen))
-    {
-        if (digitsLen != -1) // Пустые числа bigNum создаются с использованием "" в виде digitsString
-        {
-            printf("This isn't a number!\n");
-        }
-        datBig.amount = 0;
-        datBig.isNegative = false;
-        datBig.digits = (int *) malloc(sizeof(int));
-        return datBig;
-    }
+
 
     if (digitsString[0] == '-')  // Контрольный знак
     {
-        if (digitsString[1] != '0')   // -0 -> 0
-        {
-            datBig.isNegative = true;
-        }
-        else
-        {
-            datBig.isNegative = false;
-        }
-        strncpy(digitsString, digitsString + 1, digitsLen);
-        --digitsLen;
+        datBig.isNegative = digitsString[1] != 0;
+        digitsString++;
+        digitsLen--;
     }
     else
     {
@@ -104,8 +87,22 @@ bigNum BigNum (char *digitsString)  // Constructor
             datBig.digits[pos] = 0;
             decPoint = 1;
         }
-        datBig.digits[pos] = datBig.digits[pos] + (digitsString[i] - '0') * decPoint;
-        decPoint*= 10;
+        if (isdigit(digitsString[i]))
+        {
+            if (!isNumber(digitsString, digitsLen))
+            {
+                if (digitsLen != -1) // Пустые числа bigNum создаются с использованием "" в виде digitsString
+                {
+                    printf("This isn't a number!\n");
+                }
+                datBig.amount = 0;
+                datBig.isNegative = false;
+                datBig.digits = (int *) malloc(sizeof(int));
+                return datBig;
+            }
+            datBig.digits[pos] = datBig.digits[pos] + (digitsString[i] - '0') * decPoint;
+            decPoint*= 10;
+        }
     }
 
     int newAmount = pos + 1;    // Стирает ведущие нули
@@ -116,6 +113,7 @@ bigNum BigNum (char *digitsString)  // Constructor
     datBig.amount = newAmount;
     return datBig;
 }
+
 
 bool correctbigNum (const bigNum *a)
 {
